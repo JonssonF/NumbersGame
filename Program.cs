@@ -8,8 +8,11 @@
             int secondNum = 0;      // Integer for when the user wish to decide numbers.
             double average = Convert.ToDouble(firstNum + secondNum) / 2;           
             int menuChoice;         // Saves the user input.
-            int guesses;            //Counts the amount of guesses.
+            int guess;
+            int guesses = 0;            //Counts the amount of guesses.
+            int guessLeft = 5;
             bool gameEngine = true;       //Boolean value if the user wants to exit the program.
+            
             // Ascii ART ?           
             Console.WriteLine("Welcome to the guessing game!\n");
             MenuDisplay();
@@ -28,17 +31,37 @@
                 {
                     case 1:
 
-                        bool game1;
-                        Random rng1 = new Random();
-                        rng1.Next(1, 51);
+                        bool game1 = false;
+                        Random rnd1 = new Random();
+                        int rng1 = rnd1.Next(1, 51);
                         Console.WriteLine("Guess on a number between 1 - 50, you have 5 tries to do it.");
+                        while (!game1)
+                        {                            
+                            guess = int.Parse(Console.ReadLine());
+                            guesses++;
+                            guessLeft--;
+
+                            if (guess > rng1)
+                            {
+                                Console.WriteLine($"The number is too high, try again you have {guessLeft} guesses left.");                              
+                            }
+                            else if (guess < rng1)
+                            {
+                                Console.WriteLine($"The number is too low, try again you have {guessLeft} guesses left.");                              
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Congratulations, you made it! It only took you {guesses} guesses!");
+                                game1 = true;
+                            }
+                        }
                         Console.ReadKey();
                         break;
 
                     case 2:
                         bool game2;
-                        Random rng2 = new Random();
-                        rng2.Next(50, 101);
+                        Random rnd2 = new Random();
+                        int rng2 = rnd2.Next(50, 101);
                         Console.WriteLine(rng2);
                         Console.ReadKey();
                         break;
