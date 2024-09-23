@@ -4,17 +4,18 @@
     {
         static void Main(string[] args)
         {
-            int firstNum = 0;           // Integer for when the user wish to decide numbers.
-            int secondNum = 0;          // Integer for when the user wish to decide numbers.
-            double average = Convert.ToDouble(firstNum + secondNum) / 2;
             int menuChoice;             // Saves the user input.
             int guess;                  // User guess.
             int guesses = 0;            // Counts the amount of guesses.
             int guessLeft = 5;          // Guesses left.
             bool gameEngine = true;     // Boolean value if the user wants to exit the program.
-
-            // Ascii ART ?           
-            Console.WriteLine("Welcome to the guessing game!\n");
+            int firstNum = 0;           // Integer for when the user wish to decide numbers.
+            int secondNum = 0;          // Integer for when the user wish to decide numbers.
+            double average = Convert.ToDouble(firstNum + secondNum) / 2;
+                      
+            Console.WriteLine("---------------------------------\n" +
+                "--Welcome to the guessing game!--\n" +
+                "---------------------------------");
             do
             {
                 MenuDisplay();    // Displays the menu for the user.
@@ -37,8 +38,8 @@
                     do
                     {
                         Console.Clear();
-                        Random rnd1 = new Random();
-                        int rng1 = rnd1.Next(1, 26);
+                        Random RandomNumber = new Random();
+                        int rng = RandomNumber.Next(1, 26);
                         Console.WriteLine("Guess on a number between 1 - 25, you have 5 tries to do it.");
                         guess = int.Parse(Console.ReadLine());
                         guesses = 1;
@@ -47,19 +48,19 @@
                         
                         while (game1 == true)
                         {
-                            if (guess > rng1 && guesses != 5)
+                            if (guess > rng && guesses != 5)
                             {
                                 Console.WriteLine($"The number is too high, you have {guessLeft} guesses left.");
                                 guess = int.Parse(Console.ReadLine());
                             }
-                            else if (guess < rng1 && guesses != 5)
+                            else if (guess < rng && guesses != 5)
                             {
                                 Console.WriteLine($"The number is too low, you have {guessLeft} guesses left.");
                                 guess = int.Parse(Console.ReadLine());
                             }
-                            else if (guess != rng1 && guesses == 5)
+                            else if (guess != rng && guesses == 5)
                             {
-                                Console.WriteLine($"\nClose but no cigar! The number i was searching for was {rng1}.\n\n" +
+                                Console.WriteLine($"\nClose but no cigar! The number i was searching for was {rng}.\n\n" +
                                 $"Do you want to try again? Y/N");
                                 string playAgain = Console.ReadLine();
                                 if (playAgain.ToUpper() == "Y")
@@ -76,7 +77,7 @@
                                     break;
                                 }
                             }
-                            else if (guess == rng1)
+                            else if (guess == rng)
                             {
                                 if (guesses == 1)
                                 {
@@ -107,14 +108,13 @@
                         }                        
                     } while (playAgain1 == true);                   
                     break;
-
                 case 2:
                     bool playAgain2 = true;
                     do
                     {
                         Console.Clear();
-                        Random rnd1 = new Random();
-                        int rng1 = rnd1.Next(1, 51);
+                        Random RandomNumber = new Random();
+                        int rng = RandomNumber.Next(1, 51);
                         Console.WriteLine("Guess on a number between 1 - 50, you have 5 tries to do it.");
                         guess = int.Parse(Console.ReadLine());
                         guesses = 1;
@@ -123,19 +123,19 @@
 
                         while (game2 == true)
                         {
-                            if (guess > rng1 && guesses != 5)
+                            if (guess > rng && guesses != 5)
                             {
                                 Console.WriteLine($"The number is too high, you have {guessLeft} guesses left.");
                                 guess = int.Parse(Console.ReadLine());
                             }
-                            else if (guess < rng1 && guesses != 5)
+                            else if (guess < rng && guesses != 5)
                             {
                                 Console.WriteLine($"The number is too low, you have {guessLeft} guesses left.");
                                 guess = int.Parse(Console.ReadLine());
                             }
-                            else if (guess != rng1 && guesses == 5)
+                            else if (guess != rng && guesses == 5)
                             {
-                                Console.WriteLine($"\nClose but no cigar! The number i was searching for was {rng1}.\n\n" +
+                                Console.WriteLine($"\nClose but no cigar! The number i was searching for was {rng}.\n\n" +
                                 $"Do you want to try again? Y/N");
                                 string playAgain = Console.ReadLine();
                                 if (playAgain.ToUpper() == "Y")
@@ -148,11 +148,13 @@
                                 }
                                 else
                                 {
+                                    Console.WriteLine("Thanks for playing my number guessing game.");
+                                    Console.ReadKey();
                                     playAgain2 = false;
                                     break;
                                 }
                             }
-                            else if (guess == rng1)
+                            else if (guess == rng)
                             {
                                 if (guesses == 1)
                                 {
@@ -174,6 +176,8 @@
                                 }
                                 else
                                 {
+                                    Console.WriteLine("Thanks for playing my number guessing game.");
+                                    Console.ReadKey();
                                     playAgain2 = false;
                                     break;
                                 }
@@ -185,26 +189,39 @@
                     break;
 
                 case 3:
-                    bool game3;
-                    Console.Write("Write your first number: ");
-                    firstNum = int.Parse(Console.ReadLine());
-                    Console.Write("Write your second number: ");
-                    secondNum = int.Parse(Console.ReadLine());
-                    if (firstNum == secondNum)
-                    {
-                        Console.WriteLine("You can't pick the same numbers silly.");
-                    }
-                    else if (firstNum - secondNum == 1)
-                    {
-                        Console.WriteLine("You seem inventive.\n" +
-                            "Broaden your imagination.");
-                    }
-                    break;
+                    //bool playAgain3 = true;
+                    //do
+                    //{
+                        
+                    //    bool game3 = true;
+                    //    //Random UserRandom = new Random();
+                    //    //Console.Write("Write your first number: ");
+                    //    //firstNum = int.Parse(Console.ReadLine());
+                    //    //Console.Write("Write your second number: ");
+                    //    //secondNum = int.Parse(Console.ReadLine());
+                    //    //int rng3 = UserRandom.Next(firstNum, secondNum);
+                    //    UserGame();
+                    //    Console.WriteLine(rng3);
+
+
+                    //    if (firstNum == secondNum)
+                    //    {
+                    //        Console.WriteLine("You can't pick the same numbers silly.");
+                    //    }
+                    //    else if (firstNum - secondNum == 1)
+                    //    {
+                    //        Console.WriteLine("You seem inventive.\n" +
+                    //            "Broaden your imagination.");
+                    //    }
+
+
+                    //} while (playAgain3 == true);
+                    //break;
 
                 case 4:
-                    Console.WriteLine("Thank you for playing the guessing game!");
+                    Console.WriteLine("Thanks for playing my number guessing game.");
                     Console.ReadKey();
-                    break;
+                    return;
 
                 default:
                     Console.WriteLine("Please make a correct input.");
@@ -224,6 +241,16 @@
                   "3.Choose between two numbers.\n" +
                   "4.Exit the program.\n");
         }
+        //private static int UserGame(int rng3)
+        //{
+        //    Random UserRandom = new Random();
+        //    Console.Write("Write your first number: ");
+        //    int firstNum = int.Parse(Console.ReadLine());
+        //    Console.Write("Write your second number: ");
+        //    int secondNum = int.Parse(Console.ReadLine());
+        //    int rng3 = UserRandom.Next(firstNum, secondNum);
+        //    return rng3;
+        //}
 
 
 
