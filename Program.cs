@@ -33,7 +33,6 @@
             switch (menuChoice)
             {
                 case 1:
-
                     bool playAgain1 = true;
                     do
                     {
@@ -74,13 +73,20 @@
                                 else
                                 {
                                     playAgain1 = false;
-                                    return;
+                                    break;
                                 }
                             }
                             else if (guess == rng1)
                             {
-                                Console.WriteLine($"Congratulations, you made it! It only took you {guesses} guesses.\n" +
-                                    $"Do you want to try again? (Y/N) ");
+                                if (guesses == 1)
+                                {
+                                    Console.WriteLine($"Congratulations, you made it! It only took you {guesses} guess.");
+                                }
+                                else         // Tried to make a ternary operator here but it didn't co-operate.
+                                {
+                                    Console.WriteLine($"Congratulations, you made it! It only took you {guesses} guesses.");
+                                }
+                                Console.WriteLine("\nDo you want to try again? (Y/N) "); 
                                 string playAgain = Console.ReadLine();
                                 if (playAgain.ToUpper() == "Y")
                                 {
@@ -93,56 +99,90 @@
                                 else
                                 {
                                     playAgain1 = false;
-                                    return;
+                                    break;
+                                }
+                            }
+                            guesses++;
+                            guessLeft--;
+                        }                        
+                    } while (playAgain1 == true);                   
+                    break;
+
+                case 2:
+                    bool playAgain2 = true;
+                    do
+                    {
+                        Console.Clear();
+                        Random rnd1 = new Random();
+                        int rng1 = rnd1.Next(1, 51);
+                        Console.WriteLine("Guess on a number between 1 - 50, you have 5 tries to do it.");
+                        guess = int.Parse(Console.ReadLine());
+                        guesses = 1;
+                        guessLeft = 4;
+                        bool game2 = true;
+
+                        while (game2 == true)
+                        {
+                            if (guess > rng1 && guesses != 5)
+                            {
+                                Console.WriteLine($"The number is too high, you have {guessLeft} guesses left.");
+                                guess = int.Parse(Console.ReadLine());
+                            }
+                            else if (guess < rng1 && guesses != 5)
+                            {
+                                Console.WriteLine($"The number is too low, you have {guessLeft} guesses left.");
+                                guess = int.Parse(Console.ReadLine());
+                            }
+                            else if (guess != rng1 && guesses == 5)
+                            {
+                                Console.WriteLine($"\nClose but no cigar! The number i was searching for was {rng1}.\n\n" +
+                                $"Do you want to try again? Y/N");
+                                string playAgain = Console.ReadLine();
+                                if (playAgain.ToUpper() == "Y")
+                                {
+                                    playAgain2 = true;
+                                    game2 = false;
+                                    guess = 0;
+                                    guesses = 0;
+                                    guessLeft = 0;
+                                }
+                                else
+                                {
+                                    playAgain2 = false;
+                                    break;
+                                }
+                            }
+                            else if (guess == rng1)
+                            {
+                                if (guesses == 1)
+                                {
+                                    Console.WriteLine($"Congratulations, you made it! It only took you {guesses} guess.");
+                                }
+                                else         // Tried to make a ternary operator here but it didn't co-operate.
+                                {
+                                    Console.WriteLine($"Congratulations, you made it! It only took you {guesses} guesses.");
+                                }
+                                Console.WriteLine("\nDo you want to try again? (Y/N) ");
+                                string playAgain = Console.ReadLine();
+                                if (playAgain.ToUpper() == "Y")
+                                {
+                                    playAgain2 = true;
+                                    game2 = false;
+                                    guess = 0;
+                                    guesses = 0;
+                                    guessLeft = 0;
+                                }
+                                else
+                                {
+                                    playAgain2 = false;
+                                    break;
                                 }
                             }
                             guesses++;
                             guessLeft--;
                         }
-                        Console.WriteLine("Thanks for playing the EASY version.");
-
-                    } while (playAgain1 == true);
-                    Console.ReadKey();
+                    } while (playAgain2 == true);
                     break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-                case 2:
-                    bool game2 = true;
-                    
-                    
-                    
-                    do
-                    {
-                        Random rnd2 = new Random();
-                        int rng2 = rnd2.Next(1, 51);
-                        Console.WriteLine("Guess on a number between 1 - 50.");
-                        guess = int.Parse(Console.ReadLine());
-
-                        while (guess != rng2)
-                        {
-                            guesses++;
-                            guessLeft--;
-                            Console.Write("Your guess was too {0} ", guess > rng2 ? "high" : "low" + $", try again you have {guesses} guesses left.");
-                            guess = int.Parse(Console.ReadLine());
-                        }
-                        Console.WriteLine($"Congratulations, you made it, and it took you {guesses} guesses.");
-
-                    } while (game2);
-                    break;
-
-
-
 
                 case 3:
                     bool game3;
@@ -170,10 +210,11 @@
                     Console.WriteLine("Please make a correct input.");
                     break;
 
-            } while (gameEngine == true) ;
-
-
-
+            }
+          { 
+            Console.WriteLine("Thanks for playing my number guessing game.");
+            Console.ReadKey();
+          }
         }
         private static void MenuDisplay()
         {
