@@ -251,6 +251,22 @@
                                     Console.Write("Incorrect input, write a number: ");
                                 }
                             }
+                            else if (firstNum > secondNum)
+                            {
+                                Console.WriteLine("Please make sure, that your first number is lesser than your second.");
+                                Thread.Sleep(2500);
+                                Console.Clear();
+                                Console.Write("Write your first number: ");
+                                while (!int.TryParse(Console.ReadLine(), out firstNum))
+                                {
+                                    Console.Write("Incorrect input, write a number: ");
+                                }
+                                Console.Write("Write your second number: ");
+                                while (!int.TryParse(Console.ReadLine(), out secondNum))
+                                {
+                                    Console.Write("Incorrect input, write a number: ");
+                                }
+                            }
                             else
                             {
                                 testNum = false;
